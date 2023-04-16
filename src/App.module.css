@@ -1,0 +1,18 @@
+.container {
+  width: 400px;
+  margin: 0 auto;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.padding {
+  padding: 20px;
+}
+
+.toggleWrapper {
+}
+
+.content {
+  padding: 20px;
+  background-color: green;
+  color: white;
+}

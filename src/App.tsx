@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import styles from './App.module.css';
+import classNames from 'classnames';
 
-function App() {
+interface TogglerProps {
+  label: string;
+  children: React.ReactNode;
+}
+
+function Toggler(props: TogglerProps) {
+  const [shown, setShown] = useState<boolean>(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.toggleWrapper}>
+      <h2
+        onClick={() => {
+          setShown(!shown);
+        }}>
+        {props.label}
+      </h2>
+      {shown ? props.children : null}
     </div>
   );
+}
+
+function Example() {
+  return (
+    <div className={classNames(styles.container, styles.padding)}>
+      <Toggler label="Label Text">
+        <div className={styles.content}>Hello, I am some content</div>
+      </Toggler>
+      <Toggler label="Label Text 2">
+        <div className={styles.content}>Some other content</div>
+      </Toggler>
+    </div>
+  );
+}
+
+function App() {
+  return <Example />;
 }
 
 export default App;
